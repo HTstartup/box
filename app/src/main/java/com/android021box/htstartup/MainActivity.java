@@ -35,12 +35,13 @@ public class MainActivity extends Activity {
     private Button btn_sliding;
     private LocalActivityManager manager = null;
     private ViewPager pager = null;
-    private TextView  t1, t2, t3;
+    private TextView t1, t2, t3;
     private int offset = 0;
     private int currIndex = 0;
     private int bmpW;
     private ImageView cursor;
     private Activity subActivityA, subActivityB, subActivityC;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,9 +55,11 @@ public class MainActivity extends Activity {
         initPagerViewer();
         initSlidingMenu();
     }
+
     private void init() {
         btn_sliding = (Button) findViewById(R.id.btn_sliding);
     }
+
     private void setListener() {
         btn_sliding.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -66,6 +69,7 @@ public class MainActivity extends Activity {
         });
 
     }
+
     private void initSlidingMenu() {
         slidingMenu = new SlidingMenu(this);
         slidingMenu.setMode(SlidingMenu.LEFT);
@@ -80,10 +84,12 @@ public class MainActivity extends Activity {
         //initSlidingView();
         //setSlidingListener();
     }
+
     private void initSlidingView() {
 
         View view = slidingMenu.getMenu();
     }
+
     private void initTextView() {
         t1 = (TextView) findViewById(R.id.text1);
         t2 = (TextView) findViewById(R.id.text2);
@@ -96,6 +102,7 @@ public class MainActivity extends Activity {
         t2.setOnClickListener(new MyOnClickListener(1));
         t3.setOnClickListener(new MyOnClickListener(2));
     }
+
     private void initPagerViewer() {
         pager = (ViewPager) findViewById(R.id.viewpage);
         ArrayList<View> list = new ArrayList<View>();
@@ -112,6 +119,7 @@ public class MainActivity extends Activity {
         subActivityB = manager.getActivity("B");
         subActivityC = manager.getActivity("C");
     }
+
     private void InitImageView() {
         cursor = (ImageView) findViewById(R.id.cursor);
         bmpW = BitmapFactory.decodeResource(getResources(), R.drawable.icon_roller)
@@ -124,9 +132,11 @@ public class MainActivity extends Activity {
         matrix.postTranslate(offset, 0);
         cursor.setImageMatrix(matrix);
     }
+
     private View getView(String id, Intent intent) {
         return manager.startActivity(id, intent).getDecorView();
     }
+
     public class MyPagerAdapter extends PagerAdapter {
         List<View> list = new ArrayList<View>();
 
@@ -171,6 +181,7 @@ public class MainActivity extends Activity {
         public void startUpdate(View arg0) {
         }
     }
+
     public class MyOnPageChangeListener implements ViewPager.OnPageChangeListener {
 
         int one = offset * 2 + bmpW;
@@ -227,6 +238,7 @@ public class MainActivity extends Activity {
 
         }
     }
+
     public class MyOnClickListener implements View.OnClickListener {
         private int index = 0;
 
@@ -238,6 +250,8 @@ public class MainActivity extends Activity {
         public void onClick(View v) {
             pager.setCurrentItem(index);
         }
-    };
+    }
+
+    ;
 
 }
