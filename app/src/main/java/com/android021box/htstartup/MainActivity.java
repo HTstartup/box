@@ -51,6 +51,7 @@ public class MainActivity extends Activity {
         setListener();
         initTextView();
         InitImageView();
+        // hello world
         initPagerViewer();
         initSlidingMenu();
     }
