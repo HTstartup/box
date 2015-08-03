@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/incu_img_header"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_alignParentTop="true"
+        android:scaleType="centerCrop" />
+
+    <TextView
+        android:id="@+id/incu_text_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/incu_lyt_tags"
+        android:layout_marginBottom="4sp"
+        android:layout_marginLeft="16dp"
+        android:text="氪空间"
+        android:textColor="#FFFF"
+        android:textSize="24sp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/incu_img_header"
+        android:layout_alignTop="@id/incu_text_name"
+        android:background="@drawable/bg_incu_header_shadow" />
+
+    <LinearLayout
+        android:id="@+id/incu_lyt_tags"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/incu_img_header"
+        android:layout_marginBottom="8dp"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/incu_text_tag1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="2dp"
+            android:background="@drawable/bg_incu_tag"
+            android:gravity="center"
+            android:text="移动互联网"
+            android:textColor="#FFFF"
+            android:textSize="12sp"
+            android:visibility="visible"
+            android:padding="4sp" />
+
+        <TextView
+            android:id="@+id/incu_text_tag2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="2dp"
+            android:background="@drawable/bg_incu_tag"
+            android:gravity="center"
+            android:text="媒体"
+            android:textColor="#FFFF"
+            android:textSize="12sp"
+            android:visibility="gone"
+            android:padding="4sp" />
+
+        <TextView
+            android:id="@+id/incu_text_tag3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="2dp"
+            android:background="@drawable/bg_incu_tag"
+            android:gravity="center"
+            android:text="A轮"
+            android:textColor="#FFFF"
+            android:textSize="12sp"
+            android:visibility="gone"
+            android:padding="4sp" />
+
+        <TextView
+            android:id="@+id/incu_text_tag4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="2dp"
+            android:background="@drawable/bg_incu_tag"
+            android:gravity="center"
+            android:text="不占股份"
+            android:textColor="#FFFF"
+            android:textSize="12sp"
+            android:visibility="gone"
+            android:padding="4sp" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/incu_text_summary"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/incu_img_header"
+        android:background="#fff"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:padding="6sp"
+        android:text="朱萧木：锤子 001 号员工；建筑师跨界的产品经理。"
+        android:textColor="#000"
+        android:textSize="14sp" />
+
+</RelativeLayout>
