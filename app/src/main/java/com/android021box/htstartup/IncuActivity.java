@@ -142,7 +142,7 @@ public class IncuActivity extends Activity implements
         }
     };
 
-    private void MyOnRefresh() {
+    private void MyOnRefresh() {//
         if (new NetWorkState(this).networkStatusOK()) {
             List<NameValuePair> params = new ArrayList<NameValuePair>();
             params.add(new BasicNameValuePair("lastid", "0"));
