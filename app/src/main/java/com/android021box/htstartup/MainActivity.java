@@ -41,7 +41,7 @@ public class MainActivity extends Activity {
     private int bmpW;
     private ImageView cursor;
     private Activity subActivityA, subActivityB, subActivityC;
-
+    public static boolean state = true;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

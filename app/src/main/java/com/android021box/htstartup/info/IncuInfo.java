@@ -3,6 +3,8 @@ package com.android021box.htstartup.info;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.List;
+
 /**
  * Created by qliang on 2015/8/2.
  */
@@ -22,7 +24,8 @@ public class IncuInfo {
     private boolean fund_support;
     private String company;
     private String feature;
-
+    private List<PhotoInfo> imgList;
+    private PhotoInfo imgBg;
     public String getSummary() {
         return summary;
     }
@@ -108,5 +111,21 @@ public class IncuInfo {
         String summary = json.getString(INCU_SUMMARY);
 
         return  new IncuInfo(id, name, price, fund_support, company, feature, summary);
+    }
+
+    public List<PhotoInfo> getImgList() {
+        return imgList;
+    }
+
+    public void setImgList(List<PhotoInfo> imgList) {
+        this.imgList = imgList;
+    }
+
+    public PhotoInfo getImgBg() {
+        return imgBg;
+    }
+
+    public void setImgBg(PhotoInfo imgBg) {
+        this.imgBg = imgBg;
     }
 }

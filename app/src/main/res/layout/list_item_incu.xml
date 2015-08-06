@@ -16,8 +16,7 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/incu_lyt_tags"
         android:layout_marginBottom="4sp"
-        android:layout_marginLeft="16dp"
-        android:text="氪空间"
+        android:layout_marginLeft="10dp"
         android:textColor="#FFFF"
         android:textSize="24sp" />
 
@@ -46,10 +45,9 @@
             android:layout_marginRight="2dp"
             android:background="@drawable/bg_incu_tag"
             android:gravity="center"
-            android:text="移动互联网"
             android:textColor="#FFFF"
             android:textSize="12sp"
-            android:visibility="visible"
+            android:visibility="invisible"
             android:padding="4sp" />
 
         <TextView
@@ -60,7 +58,6 @@
             android:layout_marginRight="2dp"
             android:background="@drawable/bg_incu_tag"
             android:gravity="center"
-            android:text="媒体"
             android:textColor="#FFFF"
             android:textSize="12sp"
             android:visibility="gone"
@@ -88,7 +85,6 @@
             android:layout_marginRight="2dp"
             android:background="@drawable/bg_incu_tag"
             android:gravity="center"
-            android:text="不占股份"
             android:textColor="#FFFF"
             android:textSize="12sp"
             android:visibility="gone"
@@ -104,7 +100,6 @@
         android:ellipsize="end"
         android:maxLines="1"
         android:padding="6sp"
-        android:text="朱萧木：锤子 001 号员工；建筑师跨界的产品经理。"
         android:textColor="#000"
         android:textSize="14sp" />
 
