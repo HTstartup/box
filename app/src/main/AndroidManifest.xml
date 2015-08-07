@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.android021box.htstartup" >
+
+    <uses-sdk
+        android:minSdkVersion="10"
+        android:targetSdkVersion="22"
+        tools:overrideLibrary="com.etsy.android.grid" />
+
     <!-- Required  一些系统要求的权限，如访问网络等 -->
     <uses-permission android:name="com.wangatbeijing.etaopai.permission.JPUSH_MESSAGE" />
     <uses-permission android:name="android.permission.RECEIVE_USER_PRESENT" />

@@ -37,7 +37,7 @@ public class AsyncImageLoader {
 			final ImageCallback imageCallback) {
 		final String myPath=new GetPhoto().addMyExtension(imageUrl);
 		if (imageCache.containsKey(myPath)) {
-			// ���������о�ֱ�ӷ���
+			// 软缓存中有就直接返回
 			SoftReference<Drawable> softReference = imageCache.get(myPath);
 			Drawable drawable = softReference.get();
 			if (drawable != null) {
@@ -128,7 +128,7 @@ public class AsyncImageLoader {
 			fos = new FileOutputStream(bitmapFile);
 			String prefix = myPath.substring(myPath.lastIndexOf(".") + 1);
 			if (prefix.equals("mjpg") || prefix.equals("mjpeg")|| prefix.equals("mJPG")|| prefix.equals("mJPEG")) {
-				bitmap.compress(Bitmap.CompressFormat.JPEG, imageQuality, fos);//����Ϊ100��ʾ��ѹ����60����ѹ��Ҳ�ܱ�֤Ʒ��
+				bitmap.compress(Bitmap.CompressFormat.JPEG, imageQuality, fos);//锟斤拷锟斤拷为100锟斤拷示锟斤拷压锟斤拷锟斤拷60锟斤拷锟斤拷压锟斤拷也锟杰憋拷证品锟斤拷
 			} else if (prefix.equals("mpng")) {
 				bitmap.compress(Bitmap.CompressFormat.PNG, imageQuality, fos);
 			}
@@ -146,9 +146,9 @@ public class AsyncImageLoader {
 		return d;
 	}
 
-	// �ص��ӿ�
+	// 锟截碉拷锟接匡拷
 	public interface ImageCallback {
-		public void imageLoaded(Drawable imageDrawable, ImageView imageView,
-								ProgressBar progressbar);
+		void imageLoaded(Drawable imageDrawable, ImageView imageView,
+						 ProgressBar progressbar);
 	}
 }
