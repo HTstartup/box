@@ -30,12 +30,12 @@ public class EventActivity extends Activity {
 
     private void initViews() {
         ptrStaggeredGridView = (PullToRefreshStaggeredGridView) findViewById(R.id.event_staggered_events);
-        ptrStaggeredGridView.setMode(PullToRefreshBase.Mode.BOTH);
         List<EventInfo> events = new ArrayList<>();
         for (int i = 0; i < 100; i++) {
             events.add(new EventInfo());
         }
         ptrStaggeredGridView.getRefreshableView().setAdapter(new EventAdapter(this, events));
+        ptrStaggeredGridView.setMode(PullToRefreshBase.Mode.BOTH);
     }
 
     @Override

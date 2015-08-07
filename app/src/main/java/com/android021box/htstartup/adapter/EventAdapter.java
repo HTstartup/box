@@ -60,10 +60,19 @@ public class EventAdapter extends BaseAdapter {
             holder.text_time = (TextView) convertView.findViewById(R.id.li_event_text_time);
             holder.text_address = (TextView) convertView.findViewById(R.id.li_event_text_address);
             holder.text_host_company = (TextView) convertView.findViewById(R.id.li_event_text_host_company);
+            convertView.setTag(holder);
         } else {
             holder = (ViewHolder) convertView.getTag();
         }
 
+        if (position % 4 == 0)
+            holder.img_header.setImageResource(R.drawable.sd);
+        else if (position % 4 == 1)
+            holder.img_header.setImageResource(R.drawable.sd2);
+        else if (position % 4 == 2)
+            holder.img_header.setImageResource(R.drawable.sd3);
+        else if (position % 4 == 3)
+            holder.img_header.setImageResource(R.drawable.sd4);
         // TODO: 填充布局
         return convertView;
     }

@@ -15,19 +15,12 @@ import com.handmark.pulltorefresh.library.PullToRefreshBase;
  * Created by arctu on 2015/8/7.
  */
 public class PullToRefreshStaggeredGridView extends PullToRefreshBase<StaggeredGridView> {
-    private final OnRefreshListener<StaggeredGridView> defaultOnRefreshListener = new OnRefreshListener<StaggeredGridView>() {
-        @Override
-        public void onRefresh(PullToRefreshBase<StaggeredGridView> refreshView) {
-
-        }
-    };
 
     /**
      * Constructor
      */
     public PullToRefreshStaggeredGridView(Context context) {
         super(context);
-        setOnRefreshListener(defaultOnRefreshListener);
     }
 
     /**
@@ -35,7 +28,6 @@ public class PullToRefreshStaggeredGridView extends PullToRefreshBase<StaggeredG
      */
     public PullToRefreshStaggeredGridView(Context context, AttributeSet attrs) {
         super(context, attrs);
-        setOnRefreshListener(defaultOnRefreshListener);
     }
 
     /**
@@ -43,7 +35,6 @@ public class PullToRefreshStaggeredGridView extends PullToRefreshBase<StaggeredG
      */
     public PullToRefreshStaggeredGridView(Context context, Mode mode) {
         super(context, mode);
-        setOnRefreshListener(defaultOnRefreshListener);
     }
 
     /**
@@ -51,7 +42,6 @@ public class PullToRefreshStaggeredGridView extends PullToRefreshBase<StaggeredG
      */
     public PullToRefreshStaggeredGridView(Context context, Mode mode, AnimationStyle style) {
         super(context, mode, style);
-        setOnRefreshListener(defaultOnRefreshListener);
     }
 
     @Override
@@ -74,12 +64,15 @@ public class PullToRefreshStaggeredGridView extends PullToRefreshBase<StaggeredG
     @Override
     protected boolean isReadyForPullEnd() {
         boolean result = false;
-        View view = getRefreshableView().getChildAt(0);
-        if (getRefreshableView().getFirstVisiblePosition() == 0) {
+        int last = getRefreshableView().getChildCount() - 1;
+        View view = getRefreshableView().getChildAt(last);
+
+        int firstVisiblePosition = getRefreshableView().getFirstVisiblePosition();
+        int visibleItemCount = getRefreshableView().getChildCount();
+        int itemCount = getRefreshableView().getAdapter().getCount();
+        if (firstVisiblePosition + visibleItemCount >= itemCount) {
             if (view != null) {
-                // getTop() and getBottom() are relative to the ListView,
-                // so if getTop() is negative, it is not fully visible
-                result = view.getTop() >= 0;
+                result = view.getBottom() <= getRefreshableView().getHeight();
             }
         }
         return result;
@@ -88,14 +81,13 @@ public class PullToRefreshStaggeredGridView extends PullToRefreshBase<StaggeredG
     @Override
     protected boolean isReadyForPullStart() {
         boolean result = false;
-        int last = getRefreshableView().getChildCount() - 1;
-        View view = getRefreshableView().getChildAt(last);
-
-        int firstVisiblePosition = getRefreshableView().getFirstVisiblePosition();
-        int visibleItemCount = getRefreshableView().getChildCount();
-        int itemCount = getRefreshableView().getChildCount();
-        if (firstVisiblePosition + visibleItemCount >= itemCount) {
-            result = view.getBottom() <= getRefreshableView().getHeight();
+        View view = getRefreshableView().getChildAt(0);
+        if (getRefreshableView().getFirstVisiblePosition() == 0) {
+            if (view != null) {
+                // getTop() and getBottom() are relative to the ListView,
+                // so if getTop() is negative, it is not fully visible
+                result = view.getTop() >= 0;
+            }
         }
         return result;
     }
