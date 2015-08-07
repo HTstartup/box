@@ -8,7 +8,6 @@
     android:layout_height="wrap_content">
 
     <ImageView
-        android:src="@drawable/sd3"
         android:id="@+id/li_event_img_header"
         android:adjustViewBounds="true"
         android:layout_width="match_parent"
@@ -30,8 +29,7 @@
             android:ellipsize="end"
             android:paddingBottom="7.5dp"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="2015游戏开发者大会·中国" />
+            android:layout_height="wrap_content" />
 
         <LinearLayout
             android:orientation="vertical"
@@ -39,7 +37,6 @@
             android:layout_height="wrap_content">
 
             <TextView
-                android:text="2015-08-19"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="12sp"
@@ -47,7 +44,6 @@
 
 
             <TextView
-                android:text="广东深圳市·报名通过短信通知"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="12sp"
@@ -66,26 +62,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:visibility="visible">
-
-            <ImageView
-                android:id="@+id/event_img_host_logo"
-                android:src="@mipmap/ic_launcher"
-                android:layout_width="32dp"
-                android:layout_height="32dp" />
-
             <TextView
                 android:layout_gravity="center"
                 android:textSize="14dp"
-                android:text="谷歌中国  "
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/li_event_text_host_company" />
-
-            <TextView
-                android:id="@+id/event_text_view"
-                android:visibility="gone"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
         </LinearLayout>
 
     </LinearLayout>

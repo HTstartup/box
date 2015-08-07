@@ -7,7 +7,6 @@ import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
 import android.widget.AbsListView;
-import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -20,7 +19,6 @@ import com.android021box.htstartup.tool.OnTabActivityResultListener;
 import com.android021box.htstartup.view.ShowLoadingDialog;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
-import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
@@ -41,7 +39,7 @@ public class IncuActivity extends Activity implements
     private ShowLoadingDialog mDialog;
     private boolean first = true;
     private Activity context = this;
-    private static String url = BaseUrl + "get_incu.php";
+    private static String url = BaseUrl + "Incubator/outputList";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -165,7 +163,7 @@ public class IncuActivity extends Activity implements
                 params.add(new BasicNameValuePair("lastid", ""+list.get(
                         list.size() - 1).getId()));
             } catch (Exception e) {
-                Log.e("SaleBlog", "error to load more" + e.toString());
+                Log.e("Incubator", "error to load more" + e.toString());
             }
             Thread thread = new AsyncTask(handler, params, url,
                     Base.INCU_LOADMORE, newlist);

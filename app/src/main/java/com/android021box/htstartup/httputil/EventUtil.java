@@ -2,6 +2,7 @@ package com.android021box.htstartup.httputil;
 
 import android.util.Log;
 
+import com.android021box.htstartup.info.EventInfo;
 import com.android021box.htstartup.info.IncuInfo;
 import com.android021box.htstartup.info.PhotoInfo;
 
@@ -12,26 +13,24 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 /**
- * Created by wanginbeijing on 15/8/3.
+ * Created by wanginbeijing on 15/8/7.
  */
-public class IncuUtil {
-    public IncuInfo getIncu(JSONObject json_data){
-        IncuInfo inc = new IncuInfo();
+public class EventUtil {
+    public EventInfo getEvent(JSONObject json_data){
+        EventInfo ev = new EventInfo();
         try {
-            inc.setId(json_data.getInt("id"));
-            inc.setName(json_data.getString("name"));
-            inc.setCompany(json_data.getString("company"));
-            inc.setFeature(json_data.getString("feature"));
-            inc.setSummary(json_data.getString("abstract"));
-            inc.setFundSupport(json_data.getInt("fund_support") == 1 ? true : false);
-            inc.setPrice(json_data.getString("price"));
-            inc.setImgList(getIncuPhoto(json_data.getJSONArray("images"),inc));
+            ev.setId(json_data.getInt("id"));
+            ev.setName(json_data.getString("name"));
+            ev.setHostCompany(json_data.getString("company"));
+            ev.setAddress(json_data.getString("address"));
+            ev.setTime(json_data.getString("time"));
+            ev.setImages(getEventPhoto(json_data.getJSONArray("images"),ev));
         } catch (JSONException e) {
             Log.e("log_tag", "Error parsing incuData " + e.toString());
         }
-        return inc;
+        return ev;
     }
-    public ArrayList<PhotoInfo> getIncuPhoto(JSONArray imgJarray,IncuInfo inc) {
+    public ArrayList<PhotoInfo> getEventPhoto(JSONArray imgJarray,EventInfo ev) {
         ArrayList<PhotoInfo> imgList = new ArrayList<PhotoInfo>();
         try {
             for (int j = 0; j < imgJarray.length(); j++) {
@@ -40,7 +39,7 @@ public class IncuUtil {
                 photo.setImgPath(json_data.getString("url"));
                 photo.setType(json_data.getInt("type"));
                 if(photo.getType()==1){
-                    inc.setImgBg(photo);
+                    ev.setHeader(photo);
                 }else{
                     imgList.add(photo);
                 }

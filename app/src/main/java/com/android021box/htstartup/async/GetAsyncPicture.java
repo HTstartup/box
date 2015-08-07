@@ -95,17 +95,14 @@ public class GetAsyncPicture {
                                                 ImageView imageView, ProgressBar progressbar) {
                             if (imageView.getTag() != null
                                     && imageView.getTag().equals(path)) {
-                                imageView.setImageBitmap(picCut.ImageCrop(
-                                        ((BitmapDrawable) imageDrawable)
-                                                .getBitmap(), false));
+                                imageView.setImageDrawable(imageDrawable);
                             }
                         }
                     });
             if (cachedImage != null) {
                 if (imageView.getTag() != null
                         && imageView.getTag().equals(path)) {
-                    imageView.setImageBitmap(picCut.ImageCrop(
-                            ((BitmapDrawable) cachedImage).getBitmap(), false));
+                    imageView.setImageDrawable(cachedImage);
                 }
             } else {
                 imageView.setImageResource(R.drawable.phbg);

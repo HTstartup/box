@@ -9,7 +9,7 @@ import java.util.List;
 public class EventInfo {
     private int id;
     private String name;
-    private Date time;
+    private String time;
     private String address;
     private String hostCompany;
     private PhotoInfo header;
@@ -42,11 +42,11 @@ public class EventInfo {
         this.name = name;
     }
 
-    public Date getTime() {
+    public String getTime() {
         return time;
     }
 
-    public void setTime(Date time) {
+    public void setTime(String time) {
         this.time = time;
     }
 

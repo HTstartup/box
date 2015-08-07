@@ -1,7 +1,6 @@
 package com.android021box.htstartup.adapter;
 
 import android.app.Activity;
-import android.text.SpannableString;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,9 +25,11 @@ public class IncuAdapter extends BaseAdapter {
     private String BaseUrl = new Base().getBaseUrl();
     public static boolean scroll;
     public int start_index=0, end_index=6;
+    private GetAsyncPicture getPic;
     public IncuAdapter(List<IncuInfo> blist, Activity context) {
         this.context = context;
         this.inclist = blist;
+        getPic= new GetAsyncPicture(context);
     }
 
     @Override
@@ -69,13 +70,13 @@ public class IncuAdapter extends BaseAdapter {
             ih.text_tag4= (TextView) convertView
                     .findViewById(R.id.incu_text_tag4);
             ih.img_header = (ImageView) convertView.findViewById(R.id.incu_img_header);
+            convertView.setTag(ih);
         } else {
             ih = (IncuHolder) convertView.getTag();
         }
         if ((position < inclist.size()) && (position >= 0)) {
             try {
                 final IncuInfo inc = inclist.get(position);
-                GetAsyncPicture getPic = new GetAsyncPicture(context);
                 if (position >= start_index && position <= end_index ) {
                     ih.img_header.setTag(BaseUrl
                             + inc.getImgBg().getImgPath());
