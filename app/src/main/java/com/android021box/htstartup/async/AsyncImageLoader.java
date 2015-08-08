@@ -16,6 +16,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Handler;
 import android.os.Message;
+import android.support.v4.util.LruCache;
 import android.util.Log;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -24,29 +25,45 @@ import com.android021box.htstartup.tool.GetPhoto;
 
 public class AsyncImageLoader {
 	private final int  imageQuality=30;
-	private HashMap<String, SoftReference<Drawable>> imageCache;
+	private static LruCache<String, Bitmap> mMemoryCache=null;
 	private static final int MAX_THREAD_NUM = 10;
 	private ExecutorService threadPools = null;
 	private static final String SD_PATH="/mnt/sdcard/htstartup/";
 	public AsyncImageLoader() {
-		imageCache = new HashMap<String, SoftReference<Drawable>>();
+		if(mMemoryCache==null){
+			int maxMemory = (int) Runtime.getRuntime().maxMemory();
+			int mCacheSize = maxMemory / 8;
+			//给LruCache分配1/8 4M
+			mMemoryCache = new LruCache<String, Bitmap>(mCacheSize){
+				//必须重写此方法，来测量Bitmap的大小
+				@Override
+				protected int sizeOf(String key, Bitmap value) {
+					return value.getRowBytes() * value.getHeight();
+				}
+
+			};
+		}
 		threadPools = Executors.newFixedThreadPool(MAX_THREAD_NUM);
+	}
+	public void addBitmapToMemoryCache(String key, Bitmap bitmap) {
+		if (getBitmapFromMemCache(key) == null && bitmap != null) {
+			mMemoryCache.put(key, bitmap);
+		}
+	}
+	public Bitmap getBitmapFromMemCache(String key) {
+		return mMemoryCache.get(key);
 	}
 	public Drawable loadDrawable(final String imageUrl,
 			final ImageView imageView, final ProgressBar progressbar,
 			final ImageCallback imageCallback) {
 		final String myPath=new GetPhoto().addMyExtension(imageUrl);
-		if (imageCache.containsKey(myPath)) {
-			// 软缓存中有就直接返回
-			SoftReference<Drawable> softReference = imageCache.get(myPath);
-			Drawable drawable = softReference.get();
-			if (drawable != null) {
-				return drawable;
-			}
+		if (getBitmapFromMemCache(myPath) != null) {
+			// 缓存中有就直接返回
+			return new BitmapDrawable(getBitmapFromMemCache(myPath));
 		} else {
 			String bitmapName = myPath
 					.substring(myPath.lastIndexOf("/") + 1);
-			File cacheDir = new File(SD_PATH);
+			File cacheDir = new File(SD_PATH+"photo/");
 			File[] cacheFiles = cacheDir.listFiles();
 			int i = 0;
 			if (null != cacheFiles) {
@@ -55,11 +72,11 @@ public class AsyncImageLoader {
 						break;
 					}
 				}
-
 				if (i < cacheFiles.length) {
 					Bitmap bitmap = BitmapFactory
 							.decodeFile(SD_PATH+"photo/"
 									+ bitmapName);
+					addBitmapToMemoryCache(myPath, bitmap);
 					return new BitmapDrawable(bitmap);
 				}
 			}
@@ -90,7 +107,7 @@ public class AsyncImageLoader {
 			}
 
 			private void sendMessage(Drawable drawable) {
-				imageCache.put(myPath, new SoftReference<Drawable>(drawable));
+				addBitmapToMemoryCache(myPath, ((BitmapDrawable) drawable).getBitmap());
 				Message message = handler.obtainMessage(0, drawable);
 				handler.sendMessage(message);
 			}
@@ -128,7 +145,7 @@ public class AsyncImageLoader {
 			fos = new FileOutputStream(bitmapFile);
 			String prefix = myPath.substring(myPath.lastIndexOf(".") + 1);
 			if (prefix.equals("mjpg") || prefix.equals("mjpeg")|| prefix.equals("mJPG")|| prefix.equals("mJPEG")) {
-				bitmap.compress(Bitmap.CompressFormat.JPEG, imageQuality, fos);//锟斤拷锟斤拷为100锟斤拷示锟斤拷压锟斤拷锟斤拷60锟斤拷锟斤拷压锟斤拷也锟杰憋拷证品锟斤拷
+				bitmap.compress(Bitmap.CompressFormat.JPEG, imageQuality, fos);
 			} else if (prefix.equals("mpng")) {
 				bitmap.compress(Bitmap.CompressFormat.PNG, imageQuality, fos);
 			}

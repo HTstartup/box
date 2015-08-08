@@ -75,7 +75,7 @@ public class EventAdapter extends BaseAdapter {
         if ((position <= mList.size()) && (position >= 0)) {
             try {
                 final EventInfo ev = mList.get(position);
-                if (position >= start_index && position <= end_index ) {
+                if (position >= (start_index-2) && position <= (end_index+2) ) {
                     holder.img_header.setTag(BaseUrl
                             + ev.getHeader().getImgPath());
                     getPic.getSquareImage(BaseUrl

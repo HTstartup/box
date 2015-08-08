@@ -8,6 +8,7 @@
     android:layout_height="wrap_content">
 
     <ImageView
+        android:src="@drawable/phbg"
         android:id="@+id/li_event_img_header"
         android:adjustViewBounds="true"
         android:layout_width="match_parent"

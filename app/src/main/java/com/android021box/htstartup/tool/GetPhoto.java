@@ -111,11 +111,11 @@ public class GetPhoto {
 	}
 
 	public String savePhoto(Bitmap bitmap, String name) {
-		File dir = new File(SD_PATH+"etaopai_photo/");
+		File dir = new File(SD_PATH+"img/");
 		if (!dir.exists()) {
 			dir.mkdirs();
 		}
-		File bitmapFile = new File(SD_PATH+"etaopai_photo/" + name);
+		File bitmapFile = new File(SD_PATH+"img/" + name);
 		if (!bitmapFile.exists()) {
 			try {
 				bitmapFile.createNewFile();
@@ -143,7 +143,7 @@ public class GetPhoto {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return SD_PATH+"etaopai_photo/" + name;
+		return SD_PATH+"img/" + name;
 	}
 
 	public Bitmap getBitmapByPath(String path) {

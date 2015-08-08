@@ -20,6 +20,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
+import android.support.v4.util.LruCache;
 import android.util.Log;
 import android.widget.ImageView;
 
@@ -27,24 +28,39 @@ import com.android021box.htstartup.tool.GetPhoto;
 
 public class AsyncPhotoLoader {
 	private final int  imageQuality=30;
-	private HashMap<String, SoftReference<Drawable>> imageCache;
+	private static LruCache<String, Bitmap> mMemoryCache=null;
 	private static final int MAX_THREAD_NUM = 10;
 	private ExecutorService threadPools = null;
 	private static final String SD_PATH="/mnt/sdcard/htstartup/";
 	public AsyncPhotoLoader() {
-		imageCache = new HashMap<String, SoftReference<Drawable>>();
+		if(mMemoryCache==null){
+			int maxMemory = (int) Runtime.getRuntime().maxMemory();
+			int mCacheSize = maxMemory / 8;
+			//给LruCache分配1/8 4M
+			mMemoryCache = new LruCache<String, Bitmap>(mCacheSize){
+				//必须重写此方法，来测量Bitmap的大小
+				@Override
+				protected int sizeOf(String key, Bitmap value) {
+					return value.getRowBytes() * value.getHeight();
+				}
+
+			};
+		}
 		threadPools = Executors.newFixedThreadPool(MAX_THREAD_NUM);
 	}
-
+	public void addBitmapToMemoryCache(String key, Bitmap bitmap) {
+		if (getBitmapFromMemCache(key) == null && bitmap != null) {
+			mMemoryCache.put(key, bitmap);
+		}
+	}
+	public Bitmap getBitmapFromMemCache(String key) {
+		return mMemoryCache.get(key);
+	}
 	public Drawable loadDrawable(final String imageUrl,
 			final ImageView imageView, final PhotoCallback photoCallback) {
 		final String myPath=new GetPhoto().addMyExtension(imageUrl);
-		if (imageCache.containsKey( myPath)) {
-			SoftReference<Drawable> softReference = imageCache.get( myPath);
-			Drawable drawable = softReference.get();
-			if (drawable != null) {
-				return drawable;
-			}
+		if (getBitmapFromMemCache(myPath) != null) {
+			return new BitmapDrawable(getBitmapFromMemCache(myPath));
 		} else {
 			String bitmapName =  myPath
 					.substring( myPath.lastIndexOf("/") + 1);
@@ -61,6 +77,7 @@ public class AsyncPhotoLoader {
 				if (i < cacheFiles.length) {
 					Bitmap bitmap = BitmapFactory
 							.decodeFile(SD_PATH+"thumb/" + bitmapName);
+					addBitmapToMemoryCache(myPath, bitmap);
 					return new BitmapDrawable(bitmap);
 				}
 			}
@@ -86,7 +103,7 @@ public class AsyncPhotoLoader {
 			}
 
 			private void sendMessage(Drawable drawable) {
-				imageCache.put(myPath, new SoftReference<Drawable>(drawable));
+				addBitmapToMemoryCache(myPath, ((BitmapDrawable) drawable).getBitmap());
 				Message message = handler.obtainMessage(0, drawable);
 				handler.sendMessage(message);
 			}
