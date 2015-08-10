@@ -3,5 +3,6 @@
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$/app/src/main/java/com/android021box/htstartup/async/AsyncImageLoader.java" charset="GBK" />
     <file url="file://$PROJECT_DIR$/app/src/main/java/com/android021box/htstartup/http/HttpData.java" charset="GB2312" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/com/android021box/htstartup/view/MyGalleryView.java" charset="GBK" />
   </component>
 </project>

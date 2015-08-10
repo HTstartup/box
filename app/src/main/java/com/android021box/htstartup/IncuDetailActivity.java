@@ -29,7 +29,6 @@ public class IncuDetailActivity extends Activity {
         setContentView(R.layout.activity_incu_detail);
     }
     private void initView(){//实例化layout中控件。
-
     }
     private void initIncubator(){//从服务器中获取incubator详细信息。
         Intent intent = getIntent();
