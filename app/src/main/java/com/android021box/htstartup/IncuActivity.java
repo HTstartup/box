@@ -41,7 +41,7 @@ public class IncuActivity extends Activity implements
     private ShowLoadingDialog mDialog;
     private boolean first = true;
     private Activity context = this;
-    private static String url = BaseUrl + "Incubator/outputList";
+    private static String url = BaseUrl + "Incubators/outputList";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

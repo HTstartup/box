@@ -4,6 +4,7 @@ import android.util.Log;
 
 import com.android021box.htstartup.info.IncuInfo;
 import com.android021box.htstartup.info.PhotoInfo;
+import com.android021box.htstartup.info.TeamInfo;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -26,6 +27,7 @@ public class IncuUtil {
             inc.setIncubationPeriod(json_data.getString("incubation_period"));
             inc.setIncubationStage(json_data.getString("incubation_stage"));
             inc.setImgList(getIncuPhoto(json_data.getJSONArray("images"),inc));
+            inc.setTeamList(getIncuTeam(json_data.getJSONArray("teams")));
         } catch (JSONException e) {
             Log.e("log_tag", "Error parsing incuData " + e.toString());
         }
@@ -65,5 +67,21 @@ public class IncuUtil {
             Log.e("log_tag", "Error parsing imgData " + e.toString());
         }
         return imgList;
+    }
+    public ArrayList<TeamInfo> getIncuTeam(JSONArray teamJarray) {
+        ArrayList<TeamInfo> teamList = new ArrayList<TeamInfo>();
+        try {
+            for (int j = 0; j < teamJarray.length(); j++) {
+                TeamInfo team = new TeamInfo();
+                JSONObject json_data = teamJarray.getJSONObject(j);
+                team.setId(json_data.getInt("id"));
+                team.setLogo(json_data.getString("logo"));
+                team.setName(json_data.getString("name"));
+                team.setSummary(json_data.getString("summary"));
+            }
+        } catch (JSONException e) {
+            Log.e("log_tag", "Error parsing imgData " + e.toString());
+        }
+        return teamList;
     }
 }

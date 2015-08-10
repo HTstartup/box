@@ -39,7 +39,7 @@ public class EventActivity extends Activity implements
     private ShowLoadingDialog mDialog;
     private boolean first = true;
     private Activity context = this;
-    private static String url = BaseUrl + "Event/outputList";
+    private static String url = BaseUrl + "Events/outputList";
     private PullToRefreshStaggeredGridView ptrStaggeredGridView;
 
     @Override

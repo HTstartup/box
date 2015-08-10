@@ -18,6 +18,7 @@ public class IncuInfo {
     private String summary;
     private List<PhotoInfo> imgList;
     private PhotoInfo imgBg;
+    private List<TeamInfo> teamList;
     public String getSummary() {
         return summary;
     }
@@ -104,5 +105,13 @@ public class IncuInfo {
 
     public void setChargeMethod(String chargeMethod) {
         this.chargeMethod = chargeMethod;
+    }
+
+    public List<TeamInfo> getTeamList() {
+        return teamList;
+    }
+
+    public void setTeamList(List<TeamInfo> teamList) {
+        this.teamList = teamList;
     }
 }

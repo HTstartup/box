@@ -19,7 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class IncuDetailActivity extends Activity {
-    private String url=new Base().getBaseUrl()+"Incubator/outputDetail";
+    private String url=new Base().getBaseUrl()+"Incubators/outputDetail";
     private IncuInfo incubator=new IncuInfo();
     private List<IncuInfo> list = new ArrayList<IncuInfo>();
     private Activity context = this;
