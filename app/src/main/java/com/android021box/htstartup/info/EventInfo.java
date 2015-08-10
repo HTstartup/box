@@ -1,6 +1,5 @@
 package com.android021box.htstartup.info;
 
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -9,9 +8,9 @@ import java.util.List;
 public class EventInfo {
     private int id;
     private String name;
-    private String time;
+    private String endTime;
     private String address;
-    private String hostCompany;
+    private String hostName;
     private PhotoInfo header;
     private List<PhotoInfo> images;
 
@@ -42,12 +41,12 @@ public class EventInfo {
         this.name = name;
     }
 
-    public String getTime() {
-        return time;
+    public String getEndTime() {
+        return endTime;
     }
 
-    public void setTime(String time) {
-        this.time = time;
+    public void setEndTime(String endTime) {
+        this.endTime = endTime;
     }
 
     public String getAddress() {
@@ -58,12 +57,12 @@ public class EventInfo {
         this.address = address;
     }
 
-    public String getHostCompany() {
-        return hostCompany;
+    public String getHostName() {
+        return hostName;
     }
 
-    public void setHostCompany(String hostCompany) {
-        this.hostCompany = hostCompany;
+    public void setHostName(String hostName) {
+        this.hostName = hostName;
     }
 
     public PhotoInfo getHeader() {

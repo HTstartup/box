@@ -13,7 +13,6 @@ import com.android021box.htstartup.R;
 import com.android021box.htstartup.async.GetAsyncPicture;
 import com.android021box.htstartup.http.Base;
 import com.android021box.htstartup.info.EventInfo;
-import com.android021box.htstartup.info.IncuInfo;
 
 import java.util.List;
 
@@ -85,9 +84,9 @@ public class EventAdapter extends BaseAdapter {
                     holder.img_header.setImageResource(R.drawable.phbg);
                 }
                 holder.text_name.setText(ev.getName());
-                holder.text_host_company.setText(ev.getHostCompany());
+                holder.text_host_company.setText(ev.getHostName());
                 holder.text_address.setText(ev.getAddress());
-                holder.text_time.setText(ev.getTime());
+                holder.text_time.setText(ev.getEndTime());
             } catch (Exception e) {
                 Log.e("Adapter", "error to get eventInfo" + e.toString());
             }

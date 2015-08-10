@@ -40,6 +40,7 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.CALL_PHONE" >
     </uses-permission>
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -58,27 +59,31 @@
         </activity>
         <activity
             android:name=".MainActivity"
+            android:label="@string/title_activity_incu"
             android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.NoTitleBar"
-            android:label="@string/title_activity_incu" >
+            android:theme="@android:style/Theme.NoTitleBar" >
         </activity>
         <activity
             android:name=".IncuActivity"
+            android:label="@string/title_activity_incu"
             android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.NoTitleBar"
-            android:label="@string/title_activity_incu" >
+            android:theme="@android:style/Theme.NoTitleBar" >
         </activity>
         <activity
             android:name=".EventActivity"
+            android:label="@string/title_activity_event"
             android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.NoTitleBar"
-            android:label="@string/title_activity_event" >
+            android:theme="@android:style/Theme.NoTitleBar" >
         </activity>
         <activity
             android:name=".SelfActivity"
+            android:label="@string/title_activity_self"
             android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.NoTitleBar"
-            android:label="@string/title_activity_self" >
+            android:theme="@android:style/Theme.NoTitleBar" >
+        </activity>
+        <activity
+            android:name=".IncuDetailActivity"
+            android:label="@string/title_activity_incu_detail" >
         </activity>
     </application>
 

@@ -3,7 +3,6 @@ package com.android021box.htstartup.httputil;
 import android.util.Log;
 
 import com.android021box.htstartup.info.EventInfo;
-import com.android021box.htstartup.info.IncuInfo;
 import com.android021box.htstartup.info.PhotoInfo;
 
 import org.json.JSONArray;
@@ -21,9 +20,9 @@ public class EventUtil {
         try {
             ev.setId(json_data.getInt("id"));
             ev.setName(json_data.getString("name"));
-            ev.setHostCompany(json_data.getString("company"));
+            ev.setHostName(json_data.getString("host_name"));
             ev.setAddress(json_data.getString("address"));
-            ev.setTime(json_data.getString("time"));
+            ev.setEndTime(json_data.getString("end_time"));
             ev.setImages(getEventPhoto(json_data.getJSONArray("images"),ev));
         } catch (JSONException e) {
             Log.e("log_tag", "Error parsing incuData " + e.toString());
@@ -36,7 +35,7 @@ public class EventUtil {
             for (int j = 0; j < imgJarray.length(); j++) {
                 PhotoInfo photo = new PhotoInfo();
                 JSONObject json_data = imgJarray.getJSONObject(j);
-                photo.setImgPath(json_data.getString("url"));
+                photo.setImgPath(json_data.getString("path"));
                 photo.setType(json_data.getInt("type"));
                 if(photo.getType()==1){
                     ev.setHeader(photo);

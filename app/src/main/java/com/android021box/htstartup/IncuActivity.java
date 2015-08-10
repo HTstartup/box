@@ -6,7 +6,9 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
+import android.view.View;
 import android.widget.AbsListView;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -59,6 +61,19 @@ public class IncuActivity extends Activity implements
     }
 
     private void setListener() {
+        mPullToRefreshListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                if (position <= list.size()) {
+                    Intent intent = new Intent(IncuActivity.this,
+                            IncuDetailActivity.class);
+                    Bundle data = new Bundle();
+                    data.putInt("id", list.get(position - 1).getId());
+                    intent.putExtras(data);
+                    getParent().startActivity(intent);
+                }
+            }
+        });
         mPullToRefreshListView
                 .setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ListView>() {
                     @Override

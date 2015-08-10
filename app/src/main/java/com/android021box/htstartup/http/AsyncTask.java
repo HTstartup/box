@@ -87,6 +87,12 @@ public class AsyncTask extends Thread implements Runnable {
                             }
                             msg = taskId;
                             break;
+                        case Base.GET_INCU_DETAIL:
+                            list.clear();
+                            IncuInfo incu = new IncuUtil().getIncuDetail(jArray.getJSONObject(0));
+                            list.add(incu);
+                            msg = taskId;
+                            break;
                         case Base.EVENT_REFRESH:
                         case Base.EVENT_LOADMORE:
                             list.clear();

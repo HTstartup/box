@@ -88,8 +88,8 @@ public class IncuAdapter extends BaseAdapter {
                 }
                 ih.text_name.setText(inc.getName());
                 ih.text_summary.setText(inc.getSummary());
-                if(inc.getPrice().equals("免费")){
-                    ih.text_tag1.setText(inc.getPrice());
+                if(inc.getChargeMethod().equals("免费")){
+                    ih.text_tag1.setText(inc.getChargeMethod());
                     ih.text_tag1.setVisibility(View.VISIBLE);
                 }
             } catch (Exception e) {

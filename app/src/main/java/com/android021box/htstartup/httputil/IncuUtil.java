@@ -20,11 +20,27 @@ public class IncuUtil {
         try {
             inc.setId(json_data.getInt("id"));
             inc.setName(json_data.getString("name"));
-            inc.setCompany(json_data.getString("company"));
-            inc.setFeature(json_data.getString("feature"));
-            inc.setSummary(json_data.getString("abstract"));
-            inc.setFundSupport(json_data.getInt("fund_support") == 1 ? true : false);
-            inc.setPrice(json_data.getString("price"));
+            inc.setChargeMethod(json_data.getString("price"));
+            inc.setFund(json_data.getString("fund"));
+            inc.setBackground(json_data.getString("background"));
+            inc.setIncubationPeriod(json_data.getString("incubation_period"));
+            inc.setIncubationStage(json_data.getString("incubation_stage"));
+            inc.setImgList(getIncuPhoto(json_data.getJSONArray("images"),inc));
+        } catch (JSONException e) {
+            Log.e("log_tag", "Error parsing incuData " + e.toString());
+        }
+        return inc;
+    }
+    public IncuInfo getIncuDetail(JSONObject json_data){
+        IncuInfo inc = new IncuInfo();
+        try {
+            inc.setId(json_data.getInt("id"));
+            inc.setName(json_data.getString("name"));
+            inc.setChargeMethod(json_data.getString("price"));
+            inc.setFund(json_data.getString("fund"));
+            inc.setBackground(json_data.getString("background"));
+            inc.setIncubationPeriod(json_data.getString("incubation_period"));
+            inc.setIncubationStage(json_data.getString("incubation_stage"));
             inc.setImgList(getIncuPhoto(json_data.getJSONArray("images"),inc));
         } catch (JSONException e) {
             Log.e("log_tag", "Error parsing incuData " + e.toString());
@@ -37,7 +53,7 @@ public class IncuUtil {
             for (int j = 0; j < imgJarray.length(); j++) {
                 PhotoInfo photo = new PhotoInfo();
                 JSONObject json_data = imgJarray.getJSONObject(j);
-                photo.setImgPath(json_data.getString("url"));
+                photo.setImgPath(json_data.getString("path"));
                 photo.setType(json_data.getInt("type"));
                 if(photo.getType()==1){
                     inc.setImgBg(photo);
