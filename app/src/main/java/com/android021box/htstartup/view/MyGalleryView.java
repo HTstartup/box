@@ -129,7 +129,6 @@ public class MyGalleryView extends FrameLayout {
 		}
 
 	}
-
 	/**
 	 * Ìî³äViewPagerµÄÒ³ÃæÊÊÅäÆ÷
 	 *

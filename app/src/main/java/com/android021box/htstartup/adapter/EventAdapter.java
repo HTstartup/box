@@ -86,7 +86,7 @@ public class EventAdapter extends BaseAdapter {
                 holder.text_name.setText(ev.getName());
                 holder.text_host_company.setText(ev.getHostName());
                 holder.text_address.setText(ev.getAddress());
-                holder.text_time.setText(ev.getEndTime());
+                holder.text_time.setText(ev.getStartTime());
             } catch (Exception e) {
                 Log.e("Adapter", "error to get eventInfo" + e.toString());
             }

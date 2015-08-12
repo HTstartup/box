@@ -4,35 +4,36 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.ScrollView;
 
 
 public class SelfActivity extends Activity {
-
+    private ScrollView layout_main;
+    private ImageView img_bg;
+    private Button btn_login;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_self);
+        initView();
+        setListener();
     }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_self, menu);
-        return true;
+    private void initView(){
+        layout_main=(ScrollView)findViewById(R.id.layout_main);
+        img_bg=(ImageView)findViewById(R.id.img_bg);
+        btn_login=(Button)findViewById(R.id.btn_login);
     }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
+    private void setListener(){
+        btn_login.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                img_bg.setVisibility(View.GONE);
+                layout_main.setVisibility(View.VISIBLE);
+                btn_login.setVisibility(View.GONE);
+            }
+        });
     }
 }

@@ -21,13 +21,13 @@ public class IncuUtil {
         try {
             inc.setId(json_data.getInt("id"));
             inc.setName(json_data.getString("name"));
-            inc.setChargeMethod(json_data.getString("price"));
+            inc.setChargeMethod(json_data.getString("charge_method"));
             inc.setFund(json_data.getString("fund"));
             inc.setBackground(json_data.getString("background"));
             inc.setIncubationPeriod(json_data.getString("incubation_period"));
-            inc.setIncubationStage(json_data.getString("incubation_stage"));
-            inc.setImgList(getIncuPhoto(json_data.getJSONArray("images"),inc));
-            inc.setTeamList(getIncuTeam(json_data.getJSONArray("teams")));
+            inc.setIncubationState(json_data.getString("incubation_state"));
+            inc.setSummary(json_data.getString("summary"));
+            inc.setImgList(getIncuPhoto(json_data.getJSONArray("images"), inc));
         } catch (JSONException e) {
             Log.e("log_tag", "Error parsing incuData " + e.toString());
         }
@@ -38,12 +38,14 @@ public class IncuUtil {
         try {
             inc.setId(json_data.getInt("id"));
             inc.setName(json_data.getString("name"));
-            inc.setChargeMethod(json_data.getString("price"));
+            inc.setChargeMethod(json_data.getString("charge_method"));
             inc.setFund(json_data.getString("fund"));
             inc.setBackground(json_data.getString("background"));
             inc.setIncubationPeriod(json_data.getString("incubation_period"));
-            inc.setIncubationStage(json_data.getString("incubation_stage"));
+            inc.setIncubationState(json_data.getString("incubation_state"));
+            inc.setSummary(json_data.getString("summary"));
             inc.setImgList(getIncuPhoto(json_data.getJSONArray("images"),inc));
+            inc.setTeamList(getIncuTeam(json_data.getJSONArray("teams")));
         } catch (JSONException e) {
             Log.e("log_tag", "Error parsing incuData " + e.toString());
         }

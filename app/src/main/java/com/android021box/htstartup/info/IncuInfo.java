@@ -14,7 +14,7 @@ public class IncuInfo {
     private String background;
     private String characteristic;
     private String incubationPeriod;
-    private String incubationStage;
+    private String incubationState;
     private String summary;
     private List<PhotoInfo> imgList;
     private PhotoInfo imgBg;
@@ -95,12 +95,12 @@ public class IncuInfo {
         this.incubationPeriod = incubationPeriod;
     }
 
-    public String getIncubationStage() {
-        return incubationStage;
+    public String getIncubationState() {
+        return incubationState;
     }
 
-    public void setIncubationStage(String incubationStage) {
-        this.incubationStage = incubationStage;
+    public void setIncubationState(String incubationState) {
+        this.incubationState = incubationState;
     }
 
     public void setChargeMethod(String chargeMethod) {

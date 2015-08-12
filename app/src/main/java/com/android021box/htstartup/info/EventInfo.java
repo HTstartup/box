@@ -8,12 +8,13 @@ import java.util.List;
 public class EventInfo {
     private int id;
     private String name;
+    private String startTime;
     private String endTime;
     private String address;
     private String hostName;
     private PhotoInfo header;
     private List<PhotoInfo> images;
-
+    private List<TeamInfo> teamList;
     public EventInfo() {
     }
 
@@ -71,5 +72,21 @@ public class EventInfo {
 
     public void setHeader(PhotoInfo header) {
         this.header = header;
+    }
+
+    public List<TeamInfo> getTeamList() {
+        return teamList;
+    }
+
+    public void setTeamList(List<TeamInfo> teamList) {
+        this.teamList = teamList;
+    }
+
+    public String getStartTime() {
+        return startTime;
+    }
+
+    public void setStartTime(String startTime) {
+        this.startTime = startTime;
     }
 }
